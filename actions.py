@@ -47,7 +47,7 @@ def do_skip(bot, player, job_queue=None):
         send_async(bot, chat.id,
                    text="Waiting time to skip this player has "
                         "been reduced to {time} seconds.\n"
-                        "Next player: {name}"
+                        "Agla chu: {name}"
                    .format(time=n,
                            name=display_name(next_player.user))
             )

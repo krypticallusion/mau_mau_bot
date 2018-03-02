@@ -202,8 +202,7 @@ def leave_game(bot, update):
     else:
         if game.started:
             send_async(bot, chat.id,
-                       text="HKSJ. Next Player: {name}"
-                           .format(
+                       text="HKSJ. Next Player: {name}".format(
                            name=display_name(game.current_player.user)),
                        reply_to_message_id=update.message.message_id)
         else:
@@ -272,8 +271,7 @@ def kick_player(bot, update):
             return
 
         send_async(bot, chat.id,
-                   text=__("Okay. Next Player: {name}",
-                           multi=game.translate).format(
+                   text="Okay. Next Player: {name}".format(
                        name=display_name(game.current_player.user)),
                    reply_to_message_id=update.message.message_id)
 
@@ -695,7 +693,7 @@ def process_result(bot, update, job_queue):
 
     if game_is_running(game):
         send_async(bot, chat.id,
-                   text=__("Next player: {name}", multi=game.translate)
+                   text=__("Agla chu: {name}", multi=game.translate)
                    .format(name=display_name(game.current_player.user)))
         start_player_countdown(bot, game, job_queue)
 
