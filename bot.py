@@ -71,6 +71,7 @@ def notify_me(bot, update):
 def new_game(bot, update):
     """Handler for the /new command"""
     chat_id = update.message.chat_id
+    update.message.reply_text("Chal chutiye")
 
     if update.message.chat.type == 'private':
         help_handler(bot, update)
@@ -101,6 +102,7 @@ def kill_game(bot, update):
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
+    update.message.reply_text("Tujhe hi marunga bsdk")
 
     if update.message.chat.type == 'private':
         help_handler(bot, update)
@@ -135,6 +137,7 @@ def kill_game(bot, update):
 def join_game(bot, update):
     """Handler for the /join command"""
     chat = update.message.chat
+    update.message.reply_text("Bhaag bsdk")
 
     if update.message.chat.type == 'private':
         help_handler(bot, update)
@@ -177,6 +180,7 @@ def leave_game(bot, update):
     user = update.message.from_user
 
     player = gm.player_for_user_in_chat(user, chat)
+    update.message.reply_text("Tu chu, ja HKSJ")
 
     if player is None:
         send_async(bot, chat.id, text=_("You are not playing in a game in "
@@ -224,6 +228,7 @@ def kick_player(bot, update):
 
     chat = update.message.chat
     user = update.message.from_user
+    update.message.reply_text("Gand pe laat maarunga bsdk")
 
     try:
         game = gm.chatid_games[chat.id][-1]
@@ -612,6 +617,7 @@ def reply_to_query(bot, update):
 
                 if game.last_card.special == c.DRAW_FOUR and game.draw_counter:
                     add_call_bluff(results, game)
+                    update.message.reply_text("F")
 
                 playable = player.playable_cards()
                 added_ids = list()  # Duplicates are not allowed
