@@ -722,9 +722,9 @@ dispatcher.add_handler(CommandHandler('leave', leave_game))
 dispatcher.add_handler(CommandHandler(['kick', 'boot'], kick_player))
 dispatcher.add_handler(CommandHandler('open', open_game))
 dispatcher.add_handler(CommandHandler('close', close_game))
-dispatcher.add_handler(CommandHandler('enable_translations',
+#dispatcher.add_handler(CommandHandler('enable_translations',
                                       enable_translations))
-dispatcher.add_handler(CommandHandler('disable_translations',
+#dispatcher.add_handler(CommandHandler('disable_translations',
                                       disable_translations))
 dispatcher.add_handler(CommandHandler('skip', skip_player))
 dispatcher.add_handler(CommandHandler('notify_me', notify_me))
