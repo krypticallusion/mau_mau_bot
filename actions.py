@@ -110,8 +110,6 @@ def do_play_card(bot, player, result_id):
         send_async(bot, chat.id, text="Dukaan khulgya, wew")
     elif len(player.cards) > 7:
         send_async(bot, chat.id, text="Dukaan soonTM")
-    else:
-        send_async(bot, chat.id, text="Meh, collection>winning")
 
     if len(player.cards) == 1:
         send_async(bot, chat.id, text="Is chutiye ka ek hi card bach gaya, maro!")
