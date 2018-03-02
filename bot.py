@@ -54,6 +54,7 @@ logger = logging.getLogger(__name__)
 def notify_me(bot, update):
     """Handler for /notify_me command, pm people for next game"""
     chat_id = update.message.chat_id
+    update.message.reply_text("Bas na Chutiye")
     if update.message.chat.type == 'private':
         send_async(bot,
                    chat_id,
