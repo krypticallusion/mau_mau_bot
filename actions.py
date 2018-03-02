@@ -100,12 +100,25 @@ def do_play_card(bot, player, result_id):
     if game.choosing_color:
         send_async(bot, chat.id, text=_("Please choose a color"))
 
+    if len(player.cards) > 15:
+        send_async(bot, chat.id, text="Amazon khulgya, wew")
+    elif len(player.cards) > 13:
+        send_async(bot, chat.id, text="AliExpress khulgya, wew")
+    elif len(player.cards) > 11:
+        send_async(bot, chat.id, text="Flipkart khulgya, wew")
+    elif len(player.cards) > 9:
+        send_async(bot, chat.id, text="Dukaan khulgya, wew")
+    elif len(player.cards) > 7:
+        send_async(bot, chat.id, text="Dukaan soonTM")
+    else:
+        send_async(bot, chat.id, text="Meh, collection>winning")
+
     if len(player.cards) == 1:
-        send_async(bot, chat.id, text="UNO!")
+        send_async(bot, chat.id, text="Is chutiye ka ek hi card bach gaya, maro!")
 
     if len(player.cards) == 0:
         send_async(bot, chat.id,
-                   text=__("{name} won!", multi=game.translate)
+                   text=__("{name} jeet gaya bc!", multi=game.translate)
                    .format(name=user.first_name))
 
         if us.stats:
