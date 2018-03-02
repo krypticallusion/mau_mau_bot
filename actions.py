@@ -100,19 +100,23 @@ def do_play_card(bot, player, result_id):
     if game.choosing_color:
         send_async(bot, chat.id, text=_("Please choose a color"))
 
-    if len(player.cards) > 15:
+    if len(player.cards) == 15:
         send_async(bot, chat.id, text="Amazon khulgya, wew")
-    elif len(player.cards) > 13:
+
+    if len(player.cards) == 13:
         send_async(bot, chat.id, text="AliExpress khulgya, wew")
-    elif len(player.cards) > 11:
-        send_async(bot, chat.id, text="Flipkart khulgya, wew")
-    elif len(player.cards) > 9:
+
+    if len(player.cards) == 11:
+        send_async(bot, chat.id, text="Mall khulgya, wew")
+
+    if len(player.cards) == 9:
         send_async(bot, chat.id, text="Dukaan khulgya, wew")
-    elif len(player.cards) > 7:
+
+    if len(player.cards) == 7:
         send_async(bot, chat.id, text="Dukaan soonTM")
 
     if len(player.cards) == 1:
-        send_async(bot, chat.id, text="Is chutiye ka ek hi card bach gaya, maro!")
+        send_async(bot, chat.id, text="UNO | Is chutiye ka ek hi card bach gaya, maro!")
 
     if len(player.cards) == 0:
         send_async(bot, chat.id,
