@@ -18,7 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-from config import TOKEN, WORKERS
+from config import TOKEN,URL, WORKERS
 import logging
 from telegram.ext import Updater
 
@@ -29,5 +29,15 @@ db.bind('sqlite', 'uno.sqlite3', create_db=True)
 db.generate_mapping(create_tables=True)
 
 gm = GameManager()
-updater = Updater(token=TOKEN, workers=WORKERS)
+
+def updater_process():
+    updater = Updater(token=TOKEN, workers=WORKERS)
+    updater.start_webhook(listen='0.0.0.0',
+                      port=8443,
+                      url_path=TOKEN,
+                      key='private.key',
+                      cert='cert.pem',
+                      webhook_url='URL:8443/TOKEN')
+    updater.idle()
+
 dispatcher = updater.dispatcher
