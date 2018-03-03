@@ -262,7 +262,7 @@ def kick_player(bot, update):
                 return
 
             send_async(bot, chat.id,
-                           text="{1} ne {0} ka gand mara".format(display_name(kicked), display_name(user)))
+                           text="{1} ne {0} ki gand mari".format(display_name(kicked), display_name(user)))
 
         else:
             send_async(bot, chat.id,
