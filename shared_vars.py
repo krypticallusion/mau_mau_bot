@@ -37,7 +37,7 @@ def updater_process():
                       url_path=TOKEN,
                       key='private.key',
                       cert='cert.pem',
-                      webhook_url=URL:8443/TOKEN)
+                      webhook_url='URL:8443/TOKEN')
     updater.idle()
 
 dispatcher = updater.dispatcher
