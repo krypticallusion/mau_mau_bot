@@ -71,7 +71,6 @@ def notify_me(bot, update):
 def new_game(bot, update):
     """Handler for the /new command"""
     chat_id = update.message.chat_id
-    update.message.reply_text("Chal chutiye")
 
     if update.message.chat.type == 'private':
         help_handler(bot, update)
@@ -92,8 +91,8 @@ def new_game(bot, update):
         game.owner.append(update.message.from_user.id)
         game.mode = DEFAULT_GAMEMODE
         send_async(bot, chat_id,
-                   text=_("Created a new game! Join the game with /join "
-                          "and start the game with /start"))
+                   text="Naya game shuru hua frandz! Join karna toh /join "
+                          "shuru karne k liye /start")
 
 
 @user_locale
@@ -102,7 +101,6 @@ def kill_game(bot, update):
     chat = update.message.chat
     user = update.message.from_user
     games = gm.chatid_games.get(chat.id)
-    update.message.reply_text("Tujhe hi marunga bsdk")
 
     if update.message.chat.type == 'private':
         help_handler(bot, update)
@@ -110,7 +108,7 @@ def kill_game(bot, update):
 
     if not games:
             send_async(bot, chat.id,
-                       text=_("There is no running game in this chat."))
+                       text="Game hi chalu nahi :|")
             return
 
     game = games[-1]
@@ -137,7 +135,6 @@ def kill_game(bot, update):
 def join_game(bot, update):
     """Handler for the /join command"""
     chat = update.message.chat
-    update.message.reply_text("Bhaag bsdk")
 
     if update.message.chat.type == 'private':
         help_handler(bot, update)
@@ -180,7 +177,6 @@ def leave_game(bot, update):
     user = update.message.from_user
 
     player = gm.player_for_user_in_chat(user, chat)
-    update.message.reply_text("Tu chu, ja HKSJ")
 
     if player is None:
         send_async(bot, chat.id, text=_("You are not playing in a game in "
@@ -206,8 +202,7 @@ def leave_game(bot, update):
     else:
         if game.started:
             send_async(bot, chat.id,
-                       text=__("Okay. Next Player: {name}",
-                               multi=game.translate).format(
+                       text="HKSJ. Next Player: {name}".format(
                            name=display_name(game.current_player.user)),
                        reply_to_message_id=update.message.message_id)
         else:
@@ -228,7 +223,6 @@ def kick_player(bot, update):
 
     chat = update.message.chat
     user = update.message.from_user
-    update.message.reply_text("Gand pe laat maarunga bsdk")
 
     try:
         game = gm.chatid_games[chat.id][-1]
@@ -268,7 +262,7 @@ def kick_player(bot, update):
                 return
 
             send_async(bot, chat.id,
-                            text=_("{0} was kicked by {1}".format(display_name(kicked), display_name(user))))
+                           text="{1} ne {0} ka gand mara".format(display_name(kicked), display_name(user)))
 
         else:
             send_async(bot, chat.id,
@@ -277,8 +271,7 @@ def kick_player(bot, update):
             return
 
         send_async(bot, chat.id,
-                   text=__("Okay. Next Player: {name}",
-                           multi=game.translate).format(
+                   text="Okay. Next Player: {name}".format(
                        name=display_name(game.current_player.user)),
                    reply_to_message_id=update.message.message_id)
 
@@ -617,7 +610,6 @@ def reply_to_query(bot, update):
 
                 if game.last_card.special == c.DRAW_FOUR and game.draw_counter:
                     add_call_bluff(results, game)
-                    update.message.reply_text("F")
 
                 playable = player.playable_cards()
                 added_ids = list()  # Duplicates are not allowed
@@ -701,7 +693,7 @@ def process_result(bot, update, job_queue):
 
     if game_is_running(game):
         send_async(bot, chat.id,
-                   text=__("Next player: {name}", multi=game.translate)
+                   text=__("Agla chu: {name}", multi=game.translate)
                    .format(name=display_name(game.current_player.user)))
         start_player_countdown(bot, game, job_queue)
 
@@ -730,10 +722,10 @@ dispatcher.add_handler(CommandHandler('leave', leave_game))
 dispatcher.add_handler(CommandHandler(['kick', 'boot'], kick_player))
 dispatcher.add_handler(CommandHandler('open', open_game))
 dispatcher.add_handler(CommandHandler('close', close_game))
-dispatcher.add_handler(CommandHandler('enable_translations',
-                                      enable_translations))
-dispatcher.add_handler(CommandHandler('disable_translations',
-                                      disable_translations))
+#dispatcher.add_handler(CommandHandler('enable_translations',
+#                                      enable_translations))
+#dispatcher.add_handler(CommandHandler('disable_translations',
+#                                      disable_translations))
 dispatcher.add_handler(CommandHandler('skip', skip_player))
 dispatcher.add_handler(CommandHandler('notify_me', notify_me))
 simple_commands.register()
