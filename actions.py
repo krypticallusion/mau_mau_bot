@@ -45,8 +45,8 @@ def do_skip(bot, player, job_queue=None):
 
         n = skipped_player.waiting_time
         send_async(bot, chat.id,
-                   text="Waiting time to skip this player has "
-                        "been reduced to {time} seconds.\n"
+                   text="Ye khiladi {time} seconds ke"
+                        "liye hilane gaya hain\n"
                         "Agla chu: {name}"
                    .format(time=n,
                            name=display_name(next_player.user))
@@ -169,9 +169,7 @@ def do_call_bluff(bot, player):
 
     if player.prev.bluffing:
         send_async(bot, chat.id,
-                   text=__("Bluff called! Giving 4 cards to {name}",
-                           multi=game.translate)
-                   .format(name=player.prev.user.first_name))
+                   text="{name} ne gaand di! Giving 4 cards".format(name=player.prev.user.first_name))
 
         try:
             player.prev.draw()
@@ -183,10 +181,7 @@ def do_call_bluff(bot, player):
     else:
         game.draw_counter += 2
         send_async(bot, chat.id,
-                   text=__("{name1} didn't bluff! Giving 6 cards to {name2}",
-                           multi=game.translate)
-                   .format(name1=player.prev.user.first_name,
-                           name2=player.user.first_name))
+                   text="{name1} ne gaand nahi di, ab {name2} ki gaand marega. Dukaan ka investment lelo".format(name1=player.prev.user.first_name,name2=player.user.first_name))
         try:
             player.draw()
         except DeckEmptyError:

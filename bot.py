@@ -144,7 +144,7 @@ def join_game(bot, update):
         gm.join_game(update.message.from_user, chat)
 
     except LobbyClosedError:
-            send_async(bot, chat.id, text=_("The lobby is closed"))
+            send_async(bot, chat.id, text="Gand maara madarjaat")
 
     except NoGameInChatError:
         send_async(bot, chat.id,
@@ -202,7 +202,7 @@ def leave_game(bot, update):
     else:
         if game.started:
             send_async(bot, chat.id,
-                       text="HKSJ. Next Player: {name}".format(
+                       text="Pussy. Next Player: {name}".format(
                            name=display_name(game.current_player.user)),
                        reply_to_message_id=update.message.message_id)
         else:
